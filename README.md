@@ -80,12 +80,24 @@ rmtDev comment .....
 
 ---
 
-## Section 2. form validation
+## Section 2. validation
+
+### 2. form validation
 
 - add [form validation algorithm](modal.js) to handle `errors`
 
-```js
+### 3. close modal
 
+```js
+const close = document.querySelector(".close");
+
+// close modal event
+close.addEventListener("click", closeModal);
+
+//close modal form
+function closeModal() {
+  modalbg.style.display = "none";
+}
 ```
 
 ---
