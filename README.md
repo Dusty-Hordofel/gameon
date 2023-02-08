@@ -79,3 +79,15 @@ rmtDev comment .....
 - create a setup branch `Setup` in github repository to save the setup folder structure
 
 ---
+
+## Section 2. form validation
+
+- add [form validation algorithm](modal.js) to handle `errors`
+
+```js
+
+```
+
+---
+
+### 2. handle entries errors
