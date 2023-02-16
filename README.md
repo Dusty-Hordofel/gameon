@@ -102,4 +102,21 @@ function closeModal() {
 
 ---
 
-### 2. handle entries errors
+## Section 3. inscription
+
+### 2. validate inscription
+
+- hanble confirmation form validation
+
+```js
+//inscription submition and lauch thanks modal
+firstSubmitButton.addEventListener("click", () => {
+  // console.log("Love you ldzdffz");
+
+  //display subscription message
+  firstModalbg.style.display = "none";
+  secondModalbg.style.display = "block";
+
+  modalbg2.style.visibility = "visible";
+});
+```
