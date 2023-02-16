@@ -104,7 +104,7 @@ function closeModal() {
 
 ## Section 3. inscription
 
-### 2. validate inscription
+### 4. validate inscription
 
 - hanble confirmation form validation
 
@@ -118,5 +118,26 @@ firstSubmitButton.addEventListener("click", () => {
   secondModalbg.style.display = "block";
 
   modalbg2.style.visibility = "visible";
+});
+```
+
+### 5. close subsciption modal
+
+- close subscription modal
+
+```js
+//close modal 2
+
+secondClose.addEventListener("click", () => {
+  console.log(" mdafzfaffaffeza");
+  modalbg2.style.display = "none";
+  secondModalbg.style.display = "none";
+});
+
+//close inscription modal
+secondSubmitButton.addEventListener("click", () => {
+  console.log("Mama na Yo Ndeko");
+  secondModalbg.style.display = "none";
+  modalbg2.style.visibility = "hidden";
 });
 ```
