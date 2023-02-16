@@ -69,6 +69,20 @@ firstSubmitButton.addEventListener("click", () => {
 
 //---------------------------MODAL 2-----------------------------------------------------------------
 
+//close modal 2
+
+secondClose.addEventListener("click", () => {
+  console.log(" mdafzfaffaffeza");
+  modalbg2.style.display = "none";
+  secondModalbg.style.display = "none";
+});
+
+//close inscription modal
+secondSubmitButton.addEventListener("click", () => {
+  console.log("Mama na Yo Ndeko");
+  secondModalbg.style.display = "none";
+  modalbg2.style.visibility = "hidden";
+});
 //----------------------------------DOM--------------------------------------------------------------
 
 form.addEventListener("submit", (e) => {
