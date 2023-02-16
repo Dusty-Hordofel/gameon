@@ -8,9 +8,11 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalbg = document.querySelectorAll(".bground");
+const modalbg2 = document.querySelector(".content2");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+// console.log("🚀 ~ file: modal.js:16 ~ close", close);
 
 const form = document.getElementById("form");
 const firstname = document.getElementById("first");
@@ -22,21 +24,56 @@ const quantity = document.getElementById("quantity");
 const firstCheckbox = document.querySelector(
   'input[type="checkbox"]:first-of-type'
 );
+
+const submitButtons = document.querySelectorAll('input[type="submit"]');
+const close = document.querySelectorAll(".close");
+
+const firstSubmitButton = submitButtons[0];
+const secondSubmitButton = submitButtons[1];
+const firstClose = close[0];
+const secondClose = close[1];
+
+const firstModalbg = modalbg[0];
+const secondModalbg = modalbg[1];
+
+//----------------------------------------------------------------
 let checked = false;
 let allChecked = true;
 
-// launch modal event
+//---------------------------MODAL 1-----------------------------------------
+
+// launch modal event 1
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
+// launch modal form 1
 function launchModal() {
-  modalbg.style.display = "block";
+  firstModalbg.style.display = "block";
 }
 
-// DOM
+//close modal 1
+firstClose.addEventListener("click", () => {
+  console.log("mamamama");
+  firstModalbg.style.display = "none";
+});
+
+//inscription submition and lauch thanks modal
+firstSubmitButton.addEventListener("click", () => {
+  // console.log("Love you ldzdffz");
+
+  //display subscription message
+  firstModalbg.style.display = "none";
+  secondModalbg.style.display = "block";
+
+  modalbg2.style.visibility = "visible";
+});
+
+//---------------------------MODAL 2-----------------------------------------------------------------
+
+//----------------------------------DOM--------------------------------------------------------------
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
   checkInputs();
 });
 

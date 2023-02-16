@@ -80,14 +80,43 @@ rmtDev comment .....
 
 ---
 
-## Section 2. form validation
+## Section 2. validation
+
+### 2. form validation
 
 - add [form validation algorithm](modal.js) to handle `errors`
 
-```js
+### 3. close modal
 
+```js
+const close = document.querySelector(".close");
+
+// close modal event
+close.addEventListener("click", closeModal);
+
+//close modal form
+function closeModal() {
+  modalbg.style.display = "none";
+}
 ```
 
 ---
 
-### 2. handle entries errors
+## Section 3. inscription
+
+### 2. validate inscription
+
+- hanble confirmation form validation
+
+```js
+//inscription submition and lauch thanks modal
+firstSubmitButton.addEventListener("click", () => {
+  // console.log("Love you ldzdffz");
+
+  //display subscription message
+  firstModalbg.style.display = "none";
+  secondModalbg.style.display = "block";
+
+  modalbg2.style.visibility = "visible";
+});
+```
