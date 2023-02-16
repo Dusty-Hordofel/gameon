@@ -24,7 +24,8 @@ const quantity = document.getElementById("quantity");
 const firstCheckbox = document.querySelector(
   'input[type="checkbox"]:first-of-type'
 );
-
+const validateForm = document.querySelectorAll(".formData");
+console.log("🚀 ~ file: modal.js:28 ~ validateForm", validateForm);
 const submitButtons = document.querySelectorAll('input[type="submit"]');
 const close = document.querySelectorAll(".close");
 
@@ -58,13 +59,7 @@ firstClose.addEventListener("click", () => {
 
 //inscription submition and lauch thanks modal
 firstSubmitButton.addEventListener("click", () => {
-  // console.log("Love you ldzdffz");
-
-  //display subscription message
-  firstModalbg.style.display = "none";
-  secondModalbg.style.display = "block";
-
-  modalbg2.style.visibility = "visible";
+  checkAllInputs();
 });
 
 //---------------------------MODAL 2-----------------------------------------------------------------
@@ -81,7 +76,8 @@ secondClose.addEventListener("click", () => {
 secondSubmitButton.addEventListener("click", () => {
   console.log("Mama na Yo Ndeko");
   secondModalbg.style.display = "none";
-  modalbg2.style.visibility = "hidden";
+  modalbg2.style.display = "none";
+  // modalbg2.style.visibility = "hidden";
 });
 //----------------------------------DOM--------------------------------------------------------------
 
@@ -125,7 +121,6 @@ function checkInputs() {
   radio();
   // validate terms
   checkbox();
-  //show a success message
 }
 
 function setErrorFor(input, message) {
@@ -173,6 +168,9 @@ function radio() {
       checked = true;
       console.log("merci pour la selection ");
       yoyo.innerText = "";
+      //add a className to the radioButton
+      const formData = yoyo.parentElement;
+      formData.className = "formData success";
     }
   });
 
@@ -181,6 +179,10 @@ function radio() {
 
     yoyo.innerText = "Au moins un bouton radio doit être sélectionné.";
     console.log("🚀 ~ file: modal.js:113 ~ yoyo", yoyo);
+
+    //add a className to the radioButton
+    const formData = yoyo.parentElement;
+    formData.className = "formData error";
 
     //remove error message in small tag
     // setTimeout(() => {
@@ -192,7 +194,37 @@ function radio() {
 function checkbox() {
   const agreedTerms = document.reserve.querySelector("#agreed-terms");
 
-  !firstCheckbox.checked
-    ? (agreedTerms.innerText = `Cocher sur "J'ai lu et accepté les conditions d'utilisation."`)
-    : (agreedTerms.innerText = "");
+  if (!firstCheckbox.checked) {
+    agreedTerms.innerText = `Cocher sur "J'ai lu et accepté les conditions d'utilisation."`;
+    const formData = agreedTerms.parentElement;
+    formData.className = "formData error";
+  } else {
+    agreedTerms.innerText = "";
+    const formData = agreedTerms.parentElement;
+    formData.className = "formData success";
+  }
+}
+
+function checkAllInputs() {
+  //verify if error classname existe
+  const formdataDivs = document.querySelectorAll(".formData");
+  let hasSuccess = true; // Assume that all formdata divs have an error class by default
+
+  for (let i = 0; i < formdataDivs.length; i++) {
+    if (!formdataDivs[i].classList.contains("success")) {
+      // If a formdata div doesn't have an error class
+      hasSuccess = false; // Set hasSuccess to false
+      break; // Stop the loop since there's no need to check the rest of the formdata divs
+    }
+  }
+
+  if (!hasSuccess) {
+    console.log("Not All formdata divs have an success class.");
+    return;
+  } else {
+    console.log("All formdata divs have an success class.");
+    firstModalbg.style.display = "none";
+    secondModalbg.style.display = "block";
+    modalbg2.style.visibility = "visible";
+  }
 }

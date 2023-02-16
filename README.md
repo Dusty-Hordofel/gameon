@@ -141,3 +141,83 @@ secondSubmitButton.addEventListener("click", () => {
   modalbg2.style.visibility = "hidden";
 });
 ```
+
+### 6. submit validation algorithm
+
+- verify our data form is valid
+
+```js
+function checkAllInputs() {
+  //verify if error classname existe
+  const formdataDivs = document.querySelectorAll(".formData");
+  let hasSuccess = true; // Assume that all formdata divs have an error class by default
+
+  for (let i = 0; i < formdataDivs.length; i++) {
+    if (!formdataDivs[i].classList.contains("success")) {
+      // If a formdata div doesn't have an error class
+      hasSuccess = false; // Set hasSuccess to false
+      break; // Stop the loop since there's no need to check the rest of the formdata divs
+    }
+  }
+
+  if (!hasSuccess) {
+    console.log("Not All formdata divs have an success class.");
+    return;
+  } else {
+    console.log("All formdata divs have an success class.");
+    firstModalbg.style.display = "none";
+    secondModalbg.style.display = "block";
+    modalbg2.style.visibility = "visible";
+  }
+}
+```
+
+- update checkbox and radio input
+
+```js
+function checkbox() {
+  const agreedTerms = document.reserve.querySelector("#agreed-terms");
+
+  if (!firstCheckbox.checked) {
+    agreedTerms.innerText = `Cocher sur "J'ai lu et accepté les conditions d'utilisation."`;
+    const formData = agreedTerms.parentElement;
+    formData.className = "formData error";
+  } else {
+    agreedTerms.innerText = "";
+    const formData = agreedTerms.parentElement;
+    formData.className = "formData success";
+  }
+}
+
+function radio() {
+  const yoyo = document.reserve.querySelector("#choosed-location");
+  console.log("🚀 ~ file: modal.js:112 ~ radio ~ yoyo", yoyo);
+  radioButtons.forEach((radioButton) => {
+    if (radioButton.checked) {
+      // yoyo.innerText = "MOJDZ";
+      checked = true;
+      console.log("merci pour la selection ");
+      yoyo.innerText = "";
+      //add a className to the radioButton
+      const formData = yoyo.parentElement;
+      formData.className = "formData success";
+    }
+  });
+
+  if (!checked) {
+    // alert("Au moins un bouton radio doit être sélectionné.");
+
+    yoyo.innerText = "Au moins un bouton radio doit être sélectionné.";
+    console.log("🚀 ~ file: modal.js:113 ~ yoyo", yoyo);
+
+    //add a className to the radioButton
+    const formData = yoyo.parentElement;
+    formData.className = "formData error";
+
+    //remove error message in small tag
+    // setTimeout(() => {
+    //   yoyo.innerText = "";
+    // }, 20000);
+  }
+}
+```
