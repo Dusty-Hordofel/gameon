@@ -189,11 +189,8 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
-  /* transition: 0.3s; */
-  /* animation-name: modalopen; */
   animation-duration: var(--modal-duration);
   background: #232323;
-  /* background: rosybrown; */
   border-radius: 10px;
   height: 752.172px;
   overflow: hidden;
@@ -206,13 +203,10 @@ main {
   padding: 20px;
   z-index: 3;
   position: absolute;
-  /* top: -100px; */
   top: 375px;
-  /* top: 0; */
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
-  /* visibility: hidden; */
 }
 
 .modal-body {
