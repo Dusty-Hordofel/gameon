@@ -7,13 +7,12 @@ function editNav() {
   }
 }
 
-// DOM Elements
-const modalbg = document.querySelectorAll(".bground");
-const modalbg2 = document.querySelector(".content2");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-// console.log("🚀 ~ file: modal.js:16 ~ close", close);
+//--------------------------- DOM Elements--------------------------------------------------------
 
+//form selector
+const formData = document.querySelectorAll(".formData");
+
+//input selector's
 const form = document.getElementById("form");
 const firstname = document.getElementById("first");
 const lastname = document.getElementById("last");
@@ -21,25 +20,27 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 const quantity = document.getElementById("quantity");
+
+//chexbox selector
 const firstCheckbox = document.querySelector(
   'input[type="checkbox"]:first-of-type'
 );
-const validateForm = document.querySelectorAll(".formData");
-console.log("🚀 ~ file: modal.js:28 ~ validateForm", validateForm);
-const submitButtons = document.querySelectorAll('input[type="submit"]');
-const close = document.querySelectorAll(".close");
 
+//submit selector's
+const submitButtons = document.querySelectorAll('input[type="submit"]');
 const firstSubmitButton = submitButtons[0];
 const secondSubmitButton = submitButtons[1];
+
+//close selector's
+const close = document.querySelectorAll(".close");
 const firstClose = close[0];
 const secondClose = close[1];
 
+//modal selector's
+const modalBtn = document.querySelectorAll(".modal-btn");
+const modalbg = document.querySelectorAll(".bground");
 const firstModalbg = modalbg[0];
 const secondModalbg = modalbg[1];
-
-//----------------------------------------------------------------
-let checked = false;
-let allChecked = true;
 
 //---------------------------MODAL 1-----------------------------------------
 
@@ -58,9 +59,9 @@ firstClose.addEventListener("click", () => {
 });
 
 //inscription submition and lauch thanks modal
-firstSubmitButton.addEventListener("click", () => {
-  checkAllInputs();
-});
+// firstSubmitButton.addEventListener("click", () => {
+//   checkAllInputs();
+// });
 
 //---------------------------MODAL 2-----------------------------------------------------------------
 
@@ -68,7 +69,7 @@ firstSubmitButton.addEventListener("click", () => {
 
 secondClose.addEventListener("click", () => {
   console.log(" mdafzfaffaffeza");
-  modalbg2.style.display = "none";
+  // modalbg2.style.display = "none";
   secondModalbg.style.display = "none";
 });
 
@@ -76,15 +77,19 @@ secondClose.addEventListener("click", () => {
 secondSubmitButton.addEventListener("click", () => {
   console.log("Mama na Yo Ndeko");
   secondModalbg.style.display = "none";
-  modalbg2.style.display = "none";
+  // modalbg2.style.display = "none";
   // modalbg2.style.visibility = "hidden";
 });
-//----------------------------------DOM--------------------------------------------------------------
+
+//----------------------------------SUBMIT FORM--------------------------------------------------------------
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  //check input validity
   checkInputs();
+  //check validation form validity
+  validationForm();
 });
 
 function checkInputs() {
@@ -105,7 +110,7 @@ function checkInputs() {
 
   emailValue === ""
     ? setErrorFor(email, "L'email ne peut pas être vide")
-    : !isEmail(emailValue)
+    : !isValidEmail(emailValue)
     ? setErrorFor(email, "L'email n'est pas valide")
     : setSuccessFor(email);
 
@@ -123,14 +128,41 @@ function checkInputs() {
   checkbox();
 }
 
+function validationForm() {
+  //verify if error classname existe
+  const formdataDivs = document.querySelectorAll(".formData");
+  let hasSuccess = true; // Assume that all formdata divs have an error class by default
+
+  for (let i = 0; i < formdataDivs.length; i++) {
+    if (!formdataDivs[i].classList.contains("success")) {
+      // If a formdata div doesn't have an error class
+      hasSuccess = false; // Set hasSuccess to false
+      break; // Stop the loop since there's no need to check the rest of the formdata divs
+    }
+  }
+
+  if (!hasSuccess) {
+    console.log("Not All formdata divs have an success class.");
+    return;
+  } else {
+    console.log("All formdata divs have an success class.");
+    firstModalbg.style.display = "none";
+    secondModalbg.style.display = "block";
+    form.reset();
+  }
+}
+
 function setErrorFor(input, message) {
   //select parent element of input element witch is the ".form-control"
   const formData = input.parentElement;
+
   //target small element witch in  ".form-control"
   const small = formData.querySelector("small");
+
   //add error class
   formData.className = "formData error";
   console.log("🚀 ~ file: modal.js:92 ~ setErrorFor ~ formData", formData);
+
   //add error message in small tag
   small.innerText = message;
 
@@ -142,18 +174,20 @@ function setErrorFor(input, message) {
 
 function setSuccessFor(input) {
   const formData = input.parentElement;
+
   //add success class
   formData.className = "formData success";
-  //remove error text
+
   //target small element witch in  ".form-control"
   const small = formData.querySelector("small");
-  //add error message in small tag
+
+  //remove error text in small tag
   small.innerText = "";
 
   //add
 }
 
-function isEmail(email) {
+function isValidEmail(email) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     email
   );
@@ -162,6 +196,9 @@ function isEmail(email) {
 function radio() {
   const yoyo = document.reserve.querySelector("#choosed-location");
   console.log("🚀 ~ file: modal.js:112 ~ radio ~ yoyo", yoyo);
+
+  let checked = false;
+
   radioButtons.forEach((radioButton) => {
     if (radioButton.checked) {
       // yoyo.innerText = "MOJDZ";
@@ -202,29 +239,5 @@ function checkbox() {
     agreedTerms.innerText = "";
     const formData = agreedTerms.parentElement;
     formData.className = "formData success";
-  }
-}
-
-function checkAllInputs() {
-  //verify if error classname existe
-  const formdataDivs = document.querySelectorAll(".formData");
-  let hasSuccess = true; // Assume that all formdata divs have an error class by default
-
-  for (let i = 0; i < formdataDivs.length; i++) {
-    if (!formdataDivs[i].classList.contains("success")) {
-      // If a formdata div doesn't have an error class
-      hasSuccess = false; // Set hasSuccess to false
-      break; // Stop the loop since there's no need to check the rest of the formdata divs
-    }
-  }
-
-  if (!hasSuccess) {
-    console.log("Not All formdata divs have an success class.");
-    return;
-  } else {
-    console.log("All formdata divs have an success class.");
-    firstModalbg.style.display = "none";
-    secondModalbg.style.display = "block";
-    modalbg2.style.visibility = "visible";
   }
 }
