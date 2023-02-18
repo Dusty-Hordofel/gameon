@@ -242,18 +242,11 @@ small {
 
 .formData {
   position: relative;
-  /* margin-bottom: 10px; */
-  /* padding-bottom: 20px; */
   position: relative;
-  background: #3876ac;
 }
 
 .formData.error input {
-  background: #279e7a;
-  /* font-size: 0.4em; */
   color: #e54858;
-  /* display: block; */
-  /* text-align: right; */
   transition: 0.3s;
   border: 2px solid #e54858;
 }
