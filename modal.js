@@ -24,7 +24,7 @@ const quantity = document.getElementById("quantity");
 //chexbox selector
 const firstCheckbox = document.querySelector(
   'input[type="checkbox"]:first-of-type'
-);
+); //select the first checkbox
 
 //submit selector's
 const submitButtons = document.querySelectorAll('input[type="submit"]');
@@ -58,27 +58,17 @@ firstClose.addEventListener("click", () => {
   firstModalbg.style.display = "none";
 });
 
-//inscription submition and lauch thanks modal
-// firstSubmitButton.addEventListener("click", () => {
-//   checkAllInputs();
-// });
-
 //---------------------------MODAL 2-----------------------------------------------------------------
 
 //close modal 2
 
 secondClose.addEventListener("click", () => {
-  console.log(" mdafzfaffaffeza");
-  // modalbg2.style.display = "none";
   secondModalbg.style.display = "none";
 });
 
 //close inscription modal
 secondSubmitButton.addEventListener("click", () => {
-  console.log("Mama na Yo Ndeko");
   secondModalbg.style.display = "none";
-  // modalbg2.style.display = "none";
-  // modalbg2.style.visibility = "hidden";
 });
 
 //----------------------------------SUBMIT FORM--------------------------------------------------------------
@@ -88,12 +78,13 @@ form.addEventListener("submit", (e) => {
 
   //check input validity
   checkInputs();
+
   //check validation form validity
   validationForm();
 });
 
 function checkInputs() {
-  // trim to remove the whitespaces
+  // use trim() to remove the whitespaces
   const firstnameValue = firstname.value.trim();
   const lastnameValue = lastname.value.trim();
   const emailValue = email.value.trim();
@@ -124,6 +115,7 @@ function checkInputs() {
 
   // select a tournament
   radio();
+
   // validate terms
   checkbox();
 }
@@ -131,7 +123,7 @@ function checkInputs() {
 function validationForm() {
   //verify if error classname existe
   const formdataDivs = document.querySelectorAll(".formData");
-  let hasSuccess = true; // Assume that all formdata divs have an error class by default
+  let hasSuccess = true;
 
   for (let i = 0; i < formdataDivs.length; i++) {
     if (!formdataDivs[i].classList.contains("success")) {
@@ -142,10 +134,10 @@ function validationForm() {
   }
 
   if (!hasSuccess) {
-    console.log("Not All formdata divs have an success class.");
+    // console.log("Not All formdata divs have an success class.");
     return;
   } else {
-    console.log("All formdata divs have an success class.");
+    // console.log("All formdata divs have an success class.");
     firstModalbg.style.display = "none";
     secondModalbg.style.display = "block";
     form.reset();
@@ -161,15 +153,9 @@ function setErrorFor(input, message) {
 
   //add error class
   formData.className = "formData error";
-  console.log("🚀 ~ file: modal.js:92 ~ setErrorFor ~ formData", formData);
 
   //add error message in small tag
   small.innerText = message;
-
-  //remove error text
-  // setTimeout(() => {
-  //   small.innerText = "";
-  // }, 20000);
 }
 
 function setSuccessFor(input) {
@@ -188,25 +174,26 @@ function setSuccessFor(input) {
 }
 
 function isValidEmail(email) {
-  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    email
-  );
+  // Use regular expression to validate email
+  const emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRegex.test(email);
 }
 
 function radio() {
-  const yoyo = document.reserve.querySelector("#choosed-location");
-  console.log("🚀 ~ file: modal.js:112 ~ radio ~ yoyo", yoyo);
+  // select small tag selector
+  const location = document.reserve.querySelector("#choosed-location");
 
   let checked = false;
 
   radioButtons.forEach((radioButton) => {
     if (radioButton.checked) {
-      // yoyo.innerText = "MOJDZ";
       checked = true;
-      console.log("merci pour la selection ");
-      yoyo.innerText = "";
-      //add a className to the radioButton
-      const formData = yoyo.parentElement;
+      //success message is empty strring
+      location.innerText = "";
+
+      //add a success classs to to the radioButton
+      const formData = location.parentElement;
       formData.className = "formData success";
     }
   });
@@ -214,29 +201,32 @@ function radio() {
   if (!checked) {
     // alert("Au moins un bouton radio doit être sélectionné.");
 
-    yoyo.innerText = "Au moins un bouton radio doit être sélectionné.";
-    console.log("🚀 ~ file: modal.js:113 ~ yoyo", yoyo);
+    location.innerText = "Au moins un bouton radio doit être sélectionné.";
+    console.log("🚀 ~ file: modal.js:113 ~ location", location);
 
     //add a className to the radioButton
-    const formData = yoyo.parentElement;
+    const formData = location.parentElement;
     formData.className = "formData error";
-
-    //remove error message in small tag
-    // setTimeout(() => {
-    //   yoyo.innerText = "";
-    // }, 20000);
   }
 }
 
+//checkbox
 function checkbox() {
   const agreedTerms = document.reserve.querySelector("#agreed-terms");
 
+  //if checkbox is not checked
   if (!firstCheckbox.checked) {
+    //display error message if checkbox is not checked
     agreedTerms.innerText = `Cocher sur "J'ai lu et accepté les conditions d'utilisation."`;
+
+    //add error class  in parent element
     const formData = agreedTerms.parentElement;
     formData.className = "formData error";
   } else {
+    //if checkbox is  checked delete error message
     agreedTerms.innerText = "";
+
+    //add succes class  in parent element
     const formData = agreedTerms.parentElement;
     formData.className = "formData success";
   }
