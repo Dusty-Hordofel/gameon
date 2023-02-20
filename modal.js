@@ -54,7 +54,15 @@ function launchModal() {
 
 //close modal 1
 firstClose.addEventListener("click", () => {
-  console.log("mamamama");
+  // console.log("mamamama");
+
+  //clear input value after closing modal
+  const formdataDivs = document.querySelectorAll("form input");
+  for (let i = 0; i < formdataDivs.length - 1; i++) {
+    formdataDivs[i].value = "";
+  }
+  // formdataDivs.validation = "lol";
+  //hidde the model onClick
   firstModalbg.style.display = "none";
 });
 
@@ -140,7 +148,7 @@ function validationForm() {
     // console.log("All formdata divs have an success class.");
     firstModalbg.style.display = "none";
     secondModalbg.style.display = "block";
-    form.reset();
+    // form.reset();
   }
 }
 
@@ -156,6 +164,14 @@ function setErrorFor(input, message) {
 
   //add error message in small tag
   small.innerText = message;
+
+  //remove error indication
+  setTimeout(() => {
+    //remove error message in small tag
+    small.innerText = "";
+    //remove error class
+    formData.className = "formData";
+  }, 5000);
 }
 
 function setSuccessFor(input) {
@@ -170,7 +186,11 @@ function setSuccessFor(input) {
   //remove error text in small tag
   small.innerText = "";
 
-  //add
+  //remove success border in small tag
+  setTimeout(() => {
+    //remove success border
+    formData.className = "formData";
+  }, 5000);
 }
 
 function isValidEmail(email) {
@@ -207,6 +227,14 @@ function radio() {
     //add a className to the radioButton
     const formData = location.parentElement;
     formData.className = "formData error";
+
+    //remove error message in small tag
+    setTimeout(() => {
+      //remove error message in small tag
+      location.innerText = "";
+      //remove error class
+      formData.className = "formData";
+    }, 5000);
   }
 }
 
@@ -222,6 +250,13 @@ function checkbox() {
     //add error class  in parent element
     const formData = agreedTerms.parentElement;
     formData.className = "formData error";
+
+    //remove error message in small tag
+    setTimeout(() => {
+      agreedTerms.innerText = "";
+      //remove error class
+      formData.className = "formData";
+    }, 5000);
   } else {
     //if checkbox is  checked delete error message
     agreedTerms.innerText = "";
@@ -229,5 +264,12 @@ function checkbox() {
     //add succes class  in parent element
     const formData = agreedTerms.parentElement;
     formData.className = "formData success";
+
+    //remove success message in small tag
+    setTimeout(() => {
+      agreedTerms.innerText = "";
+      //remove success class
+      formData.className = "formData";
+    }, 5000);
   }
 }

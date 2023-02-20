@@ -243,17 +243,20 @@ input {
 small {
   color: red;
   font-size: 14px;
+  transition: all 2s ease;
 }
 
 .formData {
   position: relative;
   position: relative;
+  transition: all 2s ease-in-out;
 }
 
 .formData.error input {
   color: #e54858;
   transition: 0.3s;
   border: 2px solid #e54858;
+  transition: all 2s ease;
 }
 
 .formData i {
@@ -266,6 +269,7 @@ small {
 
 .formData.success input {
   border: 2px solid #2ecc71;
+  transition: all 2s ease;
 }
 
 .checkbox-label,
