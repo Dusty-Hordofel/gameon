@@ -165,12 +165,12 @@ function setErrorFor(input, message) {
   small.innerText = message;
 
   //remove error indication
-  setTimeout(() => {
-    //remove error message in small tag
-    small.innerText = "";
-    //remove error class
-    formData.className = "formData";
-  }, 5000);
+  // setTimeout(() => {
+  //   //remove error message in small tag
+  //   small.innerText = "";
+  //   //remove error class
+  //   formData.className = "formData";
+  // }, 5000);
 }
 
 function setSuccessFor(input) {
@@ -186,10 +186,10 @@ function setSuccessFor(input) {
   small.innerText = "";
 
   //remove success border in small tag
-  setTimeout(() => {
-    //remove success border
-    formData.className = "formData";
-  }, 5000);
+  // setTimeout(() => {
+  //   //remove success border
+  //   formData.className = "formData";
+  // }, 5000);
 }
 
 function isValidEmail(email) {
@@ -228,12 +228,12 @@ function radio() {
     formData.className = "formData error";
 
     //remove error message in small tag
-    setTimeout(() => {
-      //remove error message in small tag
-      location.innerText = "";
-      //remove error class
-      formData.className = "formData";
-    }, 5000);
+    // setTimeout(() => {
+    //   //remove error message in small tag
+    //   location.innerText = "";
+    //   //remove error class
+    //   formData.className = "formData";
+    // }, 5000);
   }
 }
 
@@ -251,11 +251,11 @@ function checkbox() {
     formData.className = "formData error";
 
     //remove error message in small tag
-    setTimeout(() => {
-      agreedTerms.innerText = "";
-      //remove error class
-      formData.className = "formData";
-    }, 5000);
+    // setTimeout(() => {
+    //   agreedTerms.innerText = "";
+    //   //remove error class
+    //   formData.className = "formData";
+    // }, 5000);
   } else {
     //if checkbox is  checked delete error message
     agreedTerms.innerText = "";
@@ -265,10 +265,10 @@ function checkbox() {
     formData.className = "formData success";
 
     //remove success message in small tag
-    setTimeout(() => {
-      agreedTerms.innerText = "";
-      //remove success class
-      formData.className = "formData";
-    }, 5000);
+    // setTimeout(() => {
+    //   agreedTerms.innerText = "";
+    //   //remove success class
+    //   formData.className = "formData";
+    // }, 5000);
   }
 }
