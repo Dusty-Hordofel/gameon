@@ -54,16 +54,15 @@ function launchModal() {
 
 //close modal 1
 firstClose.addEventListener("click", () => {
+  firstModalbg.style.display = "none";
   // console.log("mamamama");
-
   //clear input value after closing modal
-  const formdataDivs = document.querySelectorAll("form input");
-  for (let i = 0; i < formdataDivs.length - 1; i++) {
-    formdataDivs[i].value = "";
-  }
+  // const formdataDivs = document.querySelectorAll("form input");
+  // for (let i = 0; i < formdataDivs.length - 1; i++) {
+  //   formdataDivs[i].value = "";
+  // }
   // formdataDivs.validation = "lol";
   //hidde the model onClick
-  firstModalbg.style.display = "none";
 });
 
 //---------------------------MODAL 2-----------------------------------------------------------------
