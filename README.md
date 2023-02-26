@@ -221,3 +221,21 @@ function radio() {
   }
 }
 ```
+
+### 7. clear input after successful submission
+
+```js
+//TODO:clear input value after submitting form
+//select * input value
+const formdataDivs = document.querySelectorAll("form input");
+// const formdataDivs = document.querySelectorAll("form input");
+for (let i = 0; i < formdataDivs.length - 1; i++) {
+  //clear input value
+  formdataDivs[i].value = "";
+
+  const olive = formdataDivs[i].parentElement.className;
+  console.log("🚀 ~ file: modal.js:151 ~ validationForm ~ olive:", olive);
+  //remove sucess class
+  formdataDivs[i].parentElement.className = "formData";
+}
+```
