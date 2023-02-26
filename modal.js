@@ -139,7 +139,19 @@ function validationForm() {
     // console.log("All formdata divs have an success class.");
     firstModalbg.style.display = "none";
     secondModalbg.style.display = "block";
-    // form.reset();
+
+    //clear input value after submitting form
+    const formdataDivs = document.querySelectorAll("form input");
+    // const formdataDivs = document.querySelectorAll("form input");
+    for (let i = 0; i < formdataDivs.length - 1; i++) {
+      //clear input value
+      formdataDivs[i].value = "";
+
+      const olive = formdataDivs[i].parentElement.className;
+      console.log("🚀 ~ file: modal.js:151 ~ validationForm ~ olive:", olive);
+      //remove sucess class
+      formdataDivs[i].parentElement.className = "formData";
+    }
   }
 }
 
